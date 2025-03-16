@@ -315,7 +315,7 @@ function TeamMemberForm({
             />
           )}
 
-          {!isBuildathon && track === "SDET" && hackathonType !== "Python SDET" && (
+          {!isBuildathon && (
             <FormField
               control={control}
               name={`teamMembers.${index}.previousHackathonParticipation`}
@@ -323,12 +323,14 @@ function TeamMemberForm({
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                   <div className="space-y-0.5">
                     <FormLabel>
-                      {hackathonType === "API_POSTMAN" ||
-                      hackathonType === "API_REST Assured" 
-                        ? "Have you participated in previous API hackathons?"
-                        : hackathonType === "SQL"
-                          ? "Have you participated in any previous SQL hackathons here at Numpy Ninja?"         
-                          : "Have you participated in previous Selenium hackathons?"}
+                      {hackathonType === "Python SDET"
+                        ? "Have you participated in any previous Python hackathons here at Numpy Ninja?"
+                        : hackathonType === "API_POSTMAN" ||
+                          hackathonType === "API_REST Assured" 
+                          ? "Have you participated in previous API hackathons?"
+                          : hackathonType === "SQL"
+                            ? "Have you participated in any previous SQL hackathons here at Numpy Ninja?"         
+                            : "Have you participated in previous Selenium hackathons?"}
                     </FormLabel>
                   </div>
                   <FormControl>
