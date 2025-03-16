@@ -74,6 +74,7 @@ const teamMemberSchema = z.object({
   }),
   previousPythonHackathon: z.boolean().optional(),
   previousHackathonParticipation: z.boolean().optional(),
+  prerequisitesDocLink: z.string().url("Please enter a valid URL").optional(),
   previousHackathonDetails: z
     .object({
       phases: z
