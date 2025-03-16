@@ -73,7 +73,9 @@ const teamMemberSchema = z.object({
   }),
   completedDSAlgo: z.boolean().optional(),
   completedJobathon: z.boolean().optional(),
-  completedAPIBootcamp: z.boolean().optional(), // Added field
+  completedAPIBootcamp: z.boolean({
+    required_error: "Please indicate if you have completed the User API bootcamp"
+  }),
   previousHackathonParticipation: z.boolean().optional(),
   previousHackathonDetails: z.object({
     phases: z.array(z.enum(["Phase 1 - gherkin", "Phase 2 - automation", "Both"])).optional(),

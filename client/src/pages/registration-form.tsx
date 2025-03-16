@@ -608,7 +608,7 @@ export default function RegistrationForm() {
         completedJobathon: false,
         previousHackathonParticipation: false,
         previousHackathonDetails: { phases: [], projects: [] },
-        completedUserApiBootcamp: false,
+        completedAPIBootcamp: false,
       });
     }
   };
