@@ -288,7 +288,8 @@ function TeamMemberForm({
           )}
 
           {(hackathonType === "API_POSTMAN" ||
-            hackathonType === "API_REST Assured") && (
+            hackathonType === "API_REST Assured" ||
+            hackathonType === "Selenium Automation") && (
             <FormField
               control={control}
               name={`teamMembers.${index}.previousHackathonParticipation`}
