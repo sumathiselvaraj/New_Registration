@@ -81,8 +81,7 @@ const teamMemberSchema = z.object({
     phases: z.array(z.enum(["Phase 1 - gherkin", "Phase 2 - automation", "Both"])).optional(),
     projects: z.array(z.enum(["LMS", "Dietician", "Both"])).optional(),
   }).optional(),
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
+  fullName: z.string().min(1, "Full name is required"),
   email: z.string().email("Invalid email address"),
   timeZone: z.enum(timeZoneEnum, {
     errorMap: () => ({ message: "Please select a valid time zone" })

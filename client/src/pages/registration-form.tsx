@@ -136,26 +136,13 @@ function TeamMemberForm({
           />
         </>
       )}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4"> {/* Changed to grid-cols-1 */}
         <FormField
           control={control}
-          name={`teamMembers.${index}.firstName`}
+          name={`teamMembers.${index}.fullName`}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>First Name</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={control}
-          name={`teamMembers.${index}.lastName`}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Last Name</FormLabel>
+              <FormLabel>Full Name</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -537,8 +524,8 @@ export default function RegistrationForm() {
       eventType: eventType as "Hackathon" | "Buildathon" | "Jobathon",
       teamMembers: [
         {
-          firstName: "",
-          lastName: "",
+          firstName: "", //This and lastName need to be removed or changed to fullName
+          lastName: "", //This and firstName need to be removed or changed to fullName
           email: "",
           track: isBuildathon ? undefined : "SDET",
           groupName: "",
@@ -612,8 +599,8 @@ export default function RegistrationForm() {
   const handleAddTeamMember = () => {
     if (fields.length < 4) {
       append({
-        firstName: "",
-        lastName: "",
+        firstName: "", //This and lastName need to be removed or changed to fullName
+        lastName: "", //This and firstName need to be removed or changed to fullName
         email: "",
         track: "SDET",
         batchCode: "",
