@@ -322,6 +322,8 @@ function TeamMemberForm({
                       {hackathonType === "API_POSTMAN" ||
                       hackathonType === "API_REST Assured"
                         ? "Have you participated in previous API hackathons?"
+                        : hackathonType === "SQL"
+                        ? "Have you participated in any previous SQL hackathons here at Numpy Ninja?"
                         : "Have you participated in previous Selenium hackathons?"}
                     </FormLabel>
                   </div>
