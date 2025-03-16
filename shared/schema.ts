@@ -73,6 +73,7 @@ const teamMemberSchema = z.object({
   }),
   completedDSAlgo: z.boolean().optional(),
   completedJobathon: z.boolean().optional(),
+  completedDSAlgo: z.boolean().optional(),
   completedAPIBootcamp: z.boolean({
     required_error: "Please indicate if you have completed the User API bootcamp"
   }),
