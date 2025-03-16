@@ -346,27 +346,7 @@ function TeamMemberForm({
             />
           )}
 
-          {hackathonType === "Python SDET" && (track === "DEV" || track === "SMPO") && (
-            <>
-              <FormField
-                control={control}
-                name={`teamMembers.${index}.previousHackathonParticipation`}
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-                    <div className="space-y-0.5">
-                      <FormLabel>
-                        Have you participated in any previous Python hackathons here at Numpy Ninja?
-                      </FormLabel>
-                    </div>
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
+          {hackathonType === "Python SDET" && (
               <FormField
                 control={control}
                 name={`teamMembers.${index}.prerequisitesDocLink`}
@@ -380,7 +360,7 @@ function TeamMemberForm({
                   </FormItem>
                 )}
               />
-            </>
+            
           )}
 
           {track === "SDET" &&
