@@ -76,6 +76,7 @@ const teamMemberSchema = z.object({
   completedAPIBootcamp: z.boolean({
     required_error: "Please indicate if you have completed the User API bootcamp"
   }),
+  previousPythonHackathon: z.boolean().optional(),
   previousHackathonParticipation: z.boolean().optional(),
   previousHackathonDetails: z.object({
     phases: z.array(z.enum(["Phase 1 - gherkin", "Phase 2 - automation", "Both"])).optional(),

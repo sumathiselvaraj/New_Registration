@@ -257,7 +257,25 @@ function TeamMemberForm({
             )}
           />
 
-          
+          {!isBuildathon && hackathonType === "Python SDET" && (
+            <FormField
+              control={control}
+              name={`teamMembers.${index}.previousPythonHackathon`}
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                  <div className="space-y-0.5">
+                    <FormLabel>Have you participated in any previous python hackathons here at Numpy Ninja?</FormLabel>
+                  </div>
+                  <FormControl>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+          )}
 
           {!isBuildathon && hackathonType === "API_POSTMAN" && (
             <FormField
@@ -517,6 +535,7 @@ export default function RegistrationForm() {
           },
           workPermit: "US citizen",
           hackathonOption: hackathonType || "",
+          previousPythonHackathon: false, // Added default value
         },
       ],
     },
@@ -585,6 +604,7 @@ export default function RegistrationForm() {
         previousHackathonParticipation: false,
         previousHackathonDetails: { phases: [], projects: [] },
         completedAPIBootcamp: false,
+        previousPythonHackathon: false, // Added default value
       });
     }
   };
