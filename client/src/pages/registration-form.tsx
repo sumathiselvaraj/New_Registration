@@ -285,230 +285,6 @@ function TeamMemberForm({
               is required.
             </div>
           )}
-            {track === "SDET" && previousHackathonParticipation && (
-                      <>
-                        <FormField
-                          control={control}
-                          name={`teamMembers.${index}.previousHackathonDetails.phases`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>
-                                Previous Hackathon Phases (Select all that apply)
-                              </FormLabel>
-                              <Select
-                                onValueChange={(value) => {
-                                  const currentValues = field.value || [];
-                                  if (!currentValues.includes(value)) {
-                                    field.onChange([...currentValues, value]);
-                                  }
-                                }}
-                                value={field.value?.[0]}
-                              >
-                                <FormControl>
-                                  <SelectTrigger>
-                                    <SelectValue placeholder="Select phases" />
-                                  </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                  <SelectItem value="Phase 1 - gherkin">
-                                    Phase 1 - Gherkin
-                                  </SelectItem>
-                                  <SelectItem value="Phase 2 - automation">
-                                    Phase 2 - Automation
-                                  </SelectItem>
-                                  <SelectItem value="Both">Both</SelectItem>
-                                </SelectContent>
-                              </Select>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        {watch(
-                          `teamMembers.${index}.previousHackathonDetails.phases`,
-                        )?.includes("Both") && (
-                          <FormField
-                            control={control}
-                            name={`teamMembers.${index}.previousHackathonDetails.bothPhasesProject`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Project Details for Both Phases</FormLabel>
-                                <Select
-                                  onValueChange={field.onChange}
-                                  value={field.value}
-                                >
-                                  <FormControl>
-                                    <SelectTrigger>
-                                      <SelectValue placeholder="Select project" />
-                                    </SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent>
-                                    <SelectItem value="LMS">LMS</SelectItem>
-                                    <SelectItem value="Dietician">Dietician</SelectItem>
-                                    <SelectItem value="Both">Both</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        )}
-
-                        {watch(
-                          `teamMembers.${index}.previousHackathonDetails.phases`,
-                        )?.includes("Phase 1 - gherkin") && (
-                          <FormField
-                            control={control}
-                            name={`teamMembers.${index}.previousHackathonDetails.phase1Project`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Phase 1 - Gherkin Project</FormLabel>
-                                <Select
-                                  onValueChange={field.onChange}
-                                  value={field.value}
-                                >
-                                  <FormControl>
-                                    <SelectTrigger>
-                                      <SelectValue placeholder="Select project" />
-                                    </SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent>
-                                    <SelectItem value="LMS">LMS</SelectItem>
-                                    <SelectItem value="Dietician">Dietician</SelectItem>
-                                    <SelectItem value="Both">Both</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        )}
-
-                        {watch(
-                          `teamMembers.${index}.previousHackathonDetails.phases`,
-                        )?.includes("Phase 2 - automation") && (
-                          <FormField
-                            control={control}
-                            name={`teamMembers.${index}.previousHackathonDetails.phase2Project`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Phase 2 - Automation Project</FormLabel>
-                                <Select
-                                  onValueChange={field.onChange}
-                                  value={field.value}
-                                >
-                                  <FormControl>
-                                    <SelectTrigger>
-                                      <SelectValue placeholder="Select project" />
-                                    </SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent>
-                                    <SelectItem value="LMS">LMS</SelectItem>
-                                    <SelectItem value="Dietician">Dietician</SelectItem>
-                                    <SelectItem value="Both">Both</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        )}
-                      </>
-                    )}
-                  </>
-                )}
-
-                {/* Common Fields */}
-              </div>
-            );
-          }
-
-          {!isBuildathon && hackathonType === "API_POSTMAN" && (
-            <FormField
-              control={control}
-              name={`teamMembers.${index}.completedUserApiBootcamp`}
-              render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-                    <div className="space-y-0.5">
-                      <FormLabel>
-                        Have you completed User API bootcamp?
-                      </FormLabel>
-                    </div>
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                  </div>
-                  {!field.value && (
-                    <div className="text-sm font-medium text-destructive">
-                      You are not eligible for this hackathon. User API bootcamp
-                      completion is required.
-                    </div>
-                  )}
-                </FormItem>
-              )}
-            />
-          )}
-
-          {hackathonType === "API_REST Assured" && track === "SDET" && (
-            <FormField
-              control={control}
-              name={`teamMembers.${index}.completedAPIBootcamp`}
-              render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-                    <div className="space-y-0.5">
-                      <FormLabel>
-                        Have you completed User API bootcamp?
-                      </FormLabel>
-                    </div>
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                  </div>
-                  {!field.value && (
-                    <div className="text-sm font-medium text-destructive">
-                      You are not eligible for this hackathon. User API bootcamp
-                      completion is required.
-                    </div>
-                  )}
-                </FormItem>
-              )}
-            />
-          )}
-
-          {(hackathonType === "API_POSTMAN" ||
-            hackathonType === "API_REST Assured") && (
-            <FormField
-              control={control}
-              name={`teamMembers.${index}.previousHackathonParticipation`}
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-                  <div className="space-y-0.5">
-                    <FormLabel>
-                      {hackathonType === "API_POSTMAN" ||
-                      hackathonType === "API_REST Assured"
-                        ? "Have you participated in previous API hackathons?"
-                        : "Have you participated in previous Selenium hackathons?"}
-                    </FormLabel>
-                  </div>
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          )}
-
           {track === "SDET" && previousHackathonParticipation && (
             <>
               <FormField
@@ -637,9 +413,9 @@ function TeamMemberForm({
                   )}
                 />
               )}
-            </div>
+            </>
           )}
-        </div>
+        </>
       )}
 
       {/* Common Fields */}
@@ -801,8 +577,8 @@ export default function RegistrationForm() {
                     watch={form.watch}
                     eventType={form.getValues("eventType")}
                     isBuildathon={isBuildathon}
+                    isIndividualHackathon={!!isIndividualHackathon}
                     hackathonType={hackathonType}
-                    isIndividualHackathon={isIndividualHackathon}
                   />
                 ))}
               </div>
