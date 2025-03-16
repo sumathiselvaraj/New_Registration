@@ -245,19 +245,21 @@ function TeamMemberForm({
       {/* Track-specific fields for SDET/DA */}
       {showTrackSpecificFields && (
         <>
-          <FormField
-            control={control}
-            name={`teamMembers.${index}.batchCode`}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Batch Code</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {(track === "SDET" || track === "DA") && (
+            <FormField
+              control={control}
+              name={`teamMembers.${index}.batchCode`}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Batch Code</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
 
           {!isBuildathon && track === "SDET" && (
             <FormField
