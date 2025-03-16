@@ -1,0 +1,76 @@
+for SDET - TDD/BDD Gherkins,Selenium Automation
+First Name 
+Last Name
+Email id
+Batch code
+Track 
+Time Zone
+Are you working
+Have you completed DSALgo project , if ans is no - user should receive your not eligible , if yes proceed to next question
+Have you praticipated in previous selenium hackathon ,
+ if yes - options  provided with Phase 1 - gherkin  / Phase 2 - automation / Both 
+        - Project - LMS / Dietician / Both
+        - not user can select multiple option
+       - Can submit 
+ if no -  can submit registration
+Proceed to register and stor in DB
+
+for SDET - API_POSTMAN,API_REST Assured
+First Name 
+Last Name
+Email id
+Batch code
+Track 
+Time Zone
+Are you working
+Have you completed DSALgo project , if ans is no - user should receive your not eligible , if yes proceed to next question
+Have you completed User Api boot camp  , if ans is no - user should receive your not eligible , if yes proceed to next question
+Have you praticipated in previous API hackathon ,
+ if yes - options  provided with Phase 1 - gherkin  / Phase 2 - automation / Both 
+        - Project - LMS / Dietician / Both
+        - not user can select multiple option
+       - Can submit 
+ if no -  can submit registration
+
+Proceed to register and stor in DB
+
+for SDET - Python SDET / Blogathon
+First Name 
+Last Name
+Email id
+Batch code
+Track 
+Time Zone
+Are you working
+
+Proceed to register and stor in DB
+
+for SDET - RECIPE SCRAPING HACKATHON
+First Name 
+Last Name
+Email id
+Batch code
+Track 
+Time Zone
+Are you working
+Have you completed DSALgo project , if ans is no - user should receive your not eligible , if yes proceed to next question
+Have you praticipated in previous scrapping hackathon - yes or no
+
+Proceed to register and stor in DB
+
+
+
+for SDET - Jobathon
+First Name 
+Last Name
+Email id
+Batch code
+Track 
+Time Zone
+Are you working
+Have you completed DSALgo project , if ans is no - user should receive your not eligible , if yes proceed to next question
+Have you completed selenium hackathon if ans is no - user should receive your not eligible , if yes proceed to next question
+Have you completed API or SQL hackathon -if ans is no - user should receive your not eligible , if yes proceed to next question
+Have you published min two blogs - if ans is no - user should receive your not eligible , if yes proceed to submit
+
+Proceed to register and stor in DB
