@@ -278,13 +278,14 @@ function TeamMemberForm({
               )}
             />
           )}
-          {(!isBuildathon && track === "SDET" && !completedDSAlgo) && (
+          {!isBuildathon && track === "SDET" && !completedDSAlgo && (
             <div className="text-red-500 text-sm mt-2">
               You are not eligible for this hackathon. DSAlgo project completion
               is required.
             </div>
           )}
-          {(hackathonType === "API_POSTMAN" || hackathonType === "API_REST Assured") && (
+          {(hackathonType === "API_POSTMAN" ||
+            hackathonType === "API_REST Assured") && (
             <FormField
               control={control}
               name={`teamMembers.${index}.completedUserApiBootcamp`}
@@ -292,7 +293,9 @@ function TeamMemberForm({
                 <FormItem className="space-y-2">
                   <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                     <div className="space-y-0.5">
-                      <FormLabel>Have you completed User API bootcamp?</FormLabel>
+                      <FormLabel>
+                        Have you completed User API bootcamp?
+                      </FormLabel>
                     </div>
                     <FormControl>
                       <Switch
@@ -303,7 +306,8 @@ function TeamMemberForm({
                   </div>
                   {!field.value && (
                     <div className="text-sm font-medium text-destructive">
-                      You are not eligible for this hackathon. User API bootcamp completion is required.
+                      You are not eligible for this hackathon. User API bootcamp
+                      completion is required.
                     </div>
                   )}
                 </FormItem>
@@ -323,8 +327,10 @@ function TeamMemberForm({
                       hackathonType === "API_REST Assured"
                         ? "Have you participated in previous API hackathons?"
                         : hackathonType === "SQL"
-                        ? "Have you participated in any previous SQL hackathons here at Numpy Ninja?"
-                        : "Have you participated in previous Selenium hackathons?"}
+                          ? "Have you participated in any previous SQL hackathons here at Numpy Ninja?"
+                          : hackathonType === "Python SDET"
+                            ? "Have you participated in any previous Python hackathons here at Numpy Ninja?"
+                            : "Have you participated in previous Selenium hackathons?"}
                     </FormLabel>
                   </div>
                   <FormControl>
