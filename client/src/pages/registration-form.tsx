@@ -343,7 +343,7 @@ function TeamMemberForm({
               )}
             />
           )}
-          {hackathonType === "Python SDET" && track === "DEV" && (
+          {hackathonType === "Python SDET" && (track === "DEV" || track === "SMPO") && (
             <FormField
               control={control}
               name={`teamMembers.${index}.previousHackathonParticipation`}
