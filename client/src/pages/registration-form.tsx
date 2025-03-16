@@ -347,6 +347,28 @@ function TeamMemberForm({
           )}
 
           {hackathonType === "Python SDET" && (
+            <>
+              <FormField
+                control={control}
+                name={`teamMembers.${index}.sqlExpertiseLevel`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Please indicate your level of expertise w.r.t SQL</FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select expertise level" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="Beginner">Beginner</SelectItem>
+                        <SelectItem value="Intermediate">Intermediate</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={control}
                 name={`teamMembers.${index}.prerequisitesDocLink`}
@@ -545,8 +567,9 @@ export default function RegistrationForm() {
           },
           workPermit: "US citizen",
           hackathonOption: hackathonType || "",
-          previousPythonHackathon: false, // Added default value
-          prerequisitesDocLink: "", // Added default value
+          previousPythonHackathon: false,
+          prerequisitesDocLink: "",
+          sqlExpertiseLevel: "Beginner", // Added default value
         },
       ],
     },
