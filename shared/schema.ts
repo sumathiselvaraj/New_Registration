@@ -8,20 +8,15 @@ const workPermitEnum = [
   "US citizen",
   "Canadian citizen",
   "Canadian work permit",
-  "Canadian PR"
+  "Canadian PR",
 ] as const;
 
-const trackEnum = [
-  "SDET",
-  "DA",
-  "DEV",
-  "SMPO"
-] as const;
+const trackEnum = ["SDET", "DA", "DEV", "SMPO"] as const;
 
 const buildathonRoleEnum = [
   "App Developer",
   "App Builder",
-  "Marketing"
+  "Marketing",
 ] as const;
 
 const timeZoneEnum = [
@@ -31,7 +26,7 @@ const timeZoneEnum = [
   "PST",
   "IST",
   "GMT",
-  "Other"
+  "Other",
 ] as const;
 
 const hackathonOptionsForDA = [
@@ -39,7 +34,7 @@ const hackathonOptionsForDA = [
   "API-phase1 (POSTMAN)",
   "PYTHON",
   "BLOGATHON",
-  "SQL"
+  "SQL",
 ] as const;
 
 const hackathonOptionsForSDET = [
@@ -50,7 +45,7 @@ const hackathonOptionsForSDET = [
   "Python SDET",
   "Blogathon",
   "RECIPE SCRAPING HACKATHON",
-  "SQL"
+  "SQL",
 ] as const;
 
 const hackathonOptionsForDEVSMPO = [
@@ -60,38 +55,44 @@ const hackathonOptionsForDEVSMPO = [
   "API_REST Assured",
   "Python SDET",
   "Blogathon",
-  "SQL"
+  "SQL",
 ] as const;
 
 const teamMemberSchema = z.object({
   groupName: z.string().min(1, "Group name is required"),
   buildathonRole: z.enum(buildathonRoleEnum, {
-    errorMap: () => ({ message: "Please select a valid role" })
+    errorMap: () => ({ message: "Please select a valid role" }),
   }),
   track: z.enum(trackEnum, {
-    errorMap: () => ({ message: "Please select a valid track" })
+    errorMap: () => ({ message: "Please select a valid track" }),
   }),
   completedDSAlgo: z.boolean().optional(),
   completedJobathon: z.boolean().optional(),
-  completedDSAlgo: z.boolean().optional(),
   completedAPIBootcamp: z.boolean({
-    required_error: "Please indicate if you have completed the User API bootcamp"
+    required_error:
+      "Please indicate if you have completed the User API bootcamp",
   }),
   previousPythonHackathon: z.boolean().optional(),
   previousHackathonParticipation: z.boolean().optional(),
-  previousHackathonDetails: z.object({
-    phases: z.array(z.enum(["Phase 1 - gherkin", "Phase 2 - automation", "Both"])).optional(),
-    projects: z.array(z.enum(["LMS", "Dietician", "Both"])).optional(),
-  }).optional(),
+  previousHackathonDetails: z
+    .object({
+      phases: z
+        .array(z.enum(["Phase 1 - gherkin", "Phase 2 - automation", "Both"]))
+        .optional(),
+      projects: z.array(z.enum(["LMS", "Dietician", "Both"])).optional(),
+    })
+    .optional(),
   fullName: z.string().min(1, "Full name is required"),
   email: z.string().email("Invalid email address"),
-  timeZone: z.enum(timeZoneEnum, {
-    errorMap: () => ({ message: "Please select a valid time zone" })
-  }).optional(),
+  timeZone: z
+    .enum(timeZoneEnum, {
+      errorMap: () => ({ message: "Please select a valid time zone" }),
+    })
+    .optional(),
   isWorking: z.boolean().optional(),
   batchCode: z.string().optional(),
   workPermit: z.enum(workPermitEnum, {
-    errorMap: () => ({ message: "Please select a valid work permit type" })
+    errorMap: () => ({ message: "Please select a valid work permit type" }),
   }),
   hackathonOption: z.string().optional(),
 });
@@ -110,25 +111,24 @@ export const insertRegistrationSchema = createInsertSchema(registrations)
   .extend({
     eventType: z.enum(["Hackathon", "Buildathon"]),
     isIndividual: z.boolean().default(false),
-    teamMembers: z.array(teamMemberSchema)
-      .refine(
-        (members) => {
-          const isIndividual = members[0]?.hackathonOption?.match(
-            /(TDD\/BDD Gherkins|Selenium Automation|API_POSTMAN|API_REST Assured|Python|RECIPE SCRAPING HACKATHON|DATATHON|BLOGATHON|SQL|JOBATHON)/
-          );
-          if (isIndividual) {
-            return members.length === 1;
-          }
-          return members.length >= 3 && members.length <= 4;
-        },
-        (members) => ({
-          message: members[0]?.hackathonOption?.match(
-            /(TDD\/BDD Gherkins|Selenium Automation|API_POSTMAN|API_REST Assured|Python|RECIPE SCRAPING HACKATHON|DATATHON|BLOGATHON|SQL|JOBATHON)/
-          )
-            ? "Individual registration requires exactly 1 member"
-            : "Team registration requires 3-4 members"
-        })
-      ),
+    teamMembers: z.array(teamMemberSchema).refine(
+      (members) => {
+        const isIndividual = members[0]?.hackathonOption?.match(
+          /(TDD\/BDD Gherkins|Selenium Automation|API_POSTMAN|API_REST Assured|Python|RECIPE SCRAPING HACKATHON|DATATHON|BLOGATHON|SQL|JOBATHON)/,
+        );
+        if (isIndividual) {
+          return members.length === 1;
+        }
+        return members.length >= 3 && members.length <= 4;
+      },
+      (members) => ({
+        message: members[0]?.hackathonOption?.match(
+          /(TDD\/BDD Gherkins|Selenium Automation|API_POSTMAN|API_REST Assured|Python|RECIPE SCRAPING HACKATHON|DATATHON|BLOGATHON|SQL|JOBATHON)/,
+        )
+          ? "Individual registration requires exactly 1 member"
+          : "Team registration requires 3-4 members",
+      }),
+    ),
   });
 
 export type InsertRegistration = z.infer<typeof insertRegistrationSchema>;
@@ -138,7 +138,9 @@ export type TeamMember = z.infer<typeof teamMemberSchema>;
 export const getHackathonOptionsForTrack = (track: string) => {
   switch (track) {
     case "DA":
-      return hackathonOptionsForDA.filter(option => option !== "API_REST Assured");
+      return hackathonOptionsForDA.filter(
+        (option) => option !== "API_REST Assured",
+      );
     case "SDET":
       return hackathonOptionsForSDET;
     case "DEV":
@@ -150,7 +152,9 @@ export const getHackathonOptionsForTrack = (track: string) => {
 };
 
 export const isIndividualHackathon = (hackathonType: string) => {
-  return hackathonType.match(
-    /(TDD\/BDD Gherkins|Selenium Automation|API_POSTMAN|API_REST Assured|Python|RECIPE SCRAPING HACKATHON|DATATHON|BLOGATHON|SQL|JOBATHON)/
-  ) !== null;
+  return (
+    hackathonType.match(
+      /(TDD\/BDD Gherkins|Selenium Automation|API_POSTMAN|API_REST Assured|Python|RECIPE SCRAPING HACKATHON|DATATHON|BLOGATHON|SQL|JOBATHON)/,
+    ) !== null
+  );
 };

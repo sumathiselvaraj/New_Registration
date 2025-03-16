@@ -259,7 +259,8 @@ function TeamMemberForm({
             )}
           />
 
-          {!isBuildathon && hackathonType === "Selenium Automation" && (
+          {(hackathonType === "Selenium Automation" ||
+            hackathonType === "TDD/BDD Gherkins") && (
             <FormField
               control={control}
               name={`teamMembers.${index}.completedDSAlgo`}
@@ -268,7 +269,6 @@ function TeamMemberForm({
                   <div className="space-y-0.5">
                     <FormLabel>Have you completed DSAlgo Project?</FormLabel>
                   </div>
-
                   <FormControl>
                     <Switch
                       checked={field.value}
@@ -279,11 +279,38 @@ function TeamMemberForm({
               )}
             />
           )}
-          {!isBuildathon && hackathonType === "Selenium Automation" && (
+          {(hackathonType === "Selenium Automation" && !completedDSAlgo||
+            hackathonType === "TDD/BDD Gherkins" && !completedDSAlgo) && (
             <div className="text-red-500 text-sm mt-2">
               You are not eligible for this hackathon. DSAlgo project completion
               is required.
             </div>
+          )}
+
+          {(hackathonType === "API_POSTMAN" ||
+            hackathonType === "API_REST Assured") && (
+            <FormField
+              control={control}
+              name={`teamMembers.${index}.previousHackathonParticipation`}
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                  <div className="space-y-0.5">
+                    <FormLabel>
+                      {hackathonType === "API_POSTMAN" ||
+                      hackathonType === "API_REST Assured"
+                        ? "Have you participated in previous API hackathons?"
+                        : "Have you participated in previous Selenium hackathons?"}
+                    </FormLabel>
+                  </div>
+                  <FormControl>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
           )}
           {track === "SDET" && previousHackathonParticipation && (
             <>
