@@ -257,31 +257,7 @@ function TeamMemberForm({
             )}
           />
 
-          {!isBuildathon && track === "SDET" && (
-            <FormField
-              control={control}
-              name={`teamMembers.${index}.completedDSAlgo`}
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-                  <div className="space-y-0.5">
-                    <FormLabel>Have you completed DSAlgo Project?</FormLabel>
-                  </div>
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          )}
-          {!isBuildathon && track === "SDET" && !completedDSAlgo && (
-            <div className="text-red-500 text-sm mt-2">
-              You are not eligible for this hackathon. DSAlgo project completion
-              is required.
-            </div>
-          )}
+          
 
           {!isBuildathon && hackathonType === "API_POSTMAN" && (
             <FormField
@@ -533,7 +509,6 @@ export default function RegistrationForm() {
           timeZone: "EST",
           isWorking: false,
           batchCode: "",
-          completedDSAlgo: false,
           completedJobathon: false,
           previousHackathonParticipation: false,
           previousHackathonDetails: {
