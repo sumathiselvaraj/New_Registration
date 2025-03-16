@@ -301,16 +301,23 @@ function TeamMemberForm({
               control={control}
               name={`teamMembers.${index}.completedUserApiBootcamp`}
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-                  <div className="space-y-0.5">
-                    <FormLabel>Have you completed User API bootcamp?</FormLabel>
+                <FormItem className="space-y-2">
+                  <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                    <div className="space-y-0.5">
+                      <FormLabel>Have you completed User API bootcamp?</FormLabel>
+                    </div>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
                   </div>
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
+                  {!field.value && (
+                    <div className="text-sm font-medium text-destructive">
+                      You are not eligible for this hackathon. User API bootcamp completion is required.
+                    </div>
+                  )}
                 </FormItem>
               )}
             />
