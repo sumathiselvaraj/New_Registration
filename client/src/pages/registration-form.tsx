@@ -259,8 +259,7 @@ function TeamMemberForm({
             )}
           />
 
-          {(hackathonType === "Selenium Automation" ||
-            hackathonType === "TDD/BDD Gherkins") && (
+          {!isBuildathon && track === "SDET" && (
             <FormField
               control={control}
               name={`teamMembers.${index}.completedDSAlgo`}
@@ -279,17 +278,40 @@ function TeamMemberForm({
               )}
             />
           )}
-          {(hackathonType === "Selenium Automation" && !completedDSAlgo||
-            hackathonType === "TDD/BDD Gherkins" && !completedDSAlgo) && (
+          {(!isBuildathon && track === "SDET" && !completedDSAlgo) && (
             <div className="text-red-500 text-sm mt-2">
               You are not eligible for this hackathon. DSAlgo project completion
               is required.
             </div>
           )}
+          {(hackathonType === "API_POSTMAN" || hackathonType === "API_REST Assured") && (
+            <FormField
+              control={control}
+              name={`teamMembers.${index}.completedUserApiBootcamp`}
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                    <div className="space-y-0.5">
+                      <FormLabel>Have you completed User API bootcamp?</FormLabel>
+                    </div>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </div>
+                  {!field.value && (
+                    <div className="text-sm font-medium text-destructive">
+                      You are not eligible for this hackathon. User API bootcamp completion is required.
+                    </div>
+                  )}
+                </FormItem>
+              )}
+            />
+          )}
 
-          {(hackathonType === "API_POSTMAN" ||
-            hackathonType === "API_REST Assured" ||
-            hackathonType === "Selenium Automation") && (
+          {!isBuildathon && track === "SDET" && (
             <FormField
               control={control}
               name={`teamMembers.${index}.previousHackathonParticipation`}
