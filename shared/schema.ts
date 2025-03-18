@@ -35,6 +35,7 @@ const hackathonOptionsForDA = [
   "PYTHON",
   "BLOGATHON",
   "SQL",
+  "JOBATHON",
 ] as const;
 
 const hackathonOptionsForSDET = [
@@ -42,10 +43,11 @@ const hackathonOptionsForSDET = [
   "Selenium Automation",
   "API_POSTMAN",
   "API_REST Assured",
-  "Python SDET",
-  "Blogathon",
+  "PYTHON",
+  "BLOGATHON",
   "RECIPE SCRAPING HACKATHON",
   "SQL",
+  "JOBATHON",
 ] as const;
 
 const hackathonOptionsForDEVSMPO = [
@@ -53,9 +55,10 @@ const hackathonOptionsForDEVSMPO = [
   "Selenium Automation",
   "API_POSTMAN",
   "API_REST Assured",
-  "Python SDET",
+  "PYTHON",
   "Blogathon",
   "SQL",
+  "JOBATHON",
 ] as const;
 
 const teamMemberSchema = z.object({
@@ -74,8 +77,10 @@ const teamMemberSchema = z.object({
   }),
   previousPythonHackathon: z.boolean().optional(),
   previousHackathonParticipation: z.boolean().optional(),
+  previousDAtrackHackathon: z.boolean().optional(),
   prerequisitesDocLink: z.string().url("Please enter a valid URL").optional(),
-  sqlExpertiseLevel: z.enum(["Beginner", "Intermediate"]).optional(),
+  expertiseLevel: z.enum(["Beginner", "Intermediate"]).optional(),
+  completedAPIorSQL: z.boolean().optional(),
   previousHackathonDetails: z
     .object({
       phases: z

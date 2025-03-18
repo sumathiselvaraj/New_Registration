@@ -65,7 +65,8 @@ function TeamMemberForm({
   hackathonType,
 }: TeamMemberFormProps) {
   const track = watch(`teamMembers.${index}.track`);
-  const showTrackSpecificFields = track === "SDET" || track === "DA" || track === "DEV" || track === "SMPO";
+  const showTrackSpecificFields =
+    track === "SDET" || track === "DA" || track === "DEV" || track === "SMPO";
   const isHackathon = eventType === "Hackathon";
   const completedDSAlgo = watch(`teamMembers.${index}.completedDSAlgo`);
   const previousHackathonParticipation = watch(
@@ -261,31 +262,40 @@ function TeamMemberForm({
             />
           )}
 
-          {!isBuildathon && track === "SDET" && (
-            <FormField
-              control={control}
-              name={`teamMembers.${index}.completedDSAlgo`}
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-                  <div className="space-y-0.5">
-                    <FormLabel>Have you completed DSAlgo Project?</FormLabel>
-                  </div>
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          )}
-          {!isBuildathon && track === "SDET" && !completedDSAlgo && (
-            <div className="text-red-500 text-sm mt-2">
-              You are not eligible for this hackathon. DSAlgo project completion
-              is required.
-            </div>
-          )}
+          {!isBuildathon &&
+            track === "SDET" &&
+             hackathonType !== "PYTHON" &&
+            hackathonType !== "SQL" &&
+            hackathonType !== "BLOGATHON" && (
+              <FormField
+                control={control}
+                name={`teamMembers.${index}.completedDSAlgo`}
+                render={({ field }) => (
+                  <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                    <div className="space-y-0.5">
+                      <FormLabel>Have you completed DSAlgo Project?</FormLabel>
+                    </div>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            )}
+          {!isBuildathon &&
+            track === "SDET" &&
+            !completedDSAlgo &&
+            hackathonType !== "PYTHON" &&
+            hackathonType !== "SQL" &&
+            hackathonType !== "BLOGATHON" && (
+              <div className="text-red-500 text-sm mt-2">
+                You are not eligible for this hackathon. DSAlgo project
+                completion is required.
+              </div>
+            )}
           {(hackathonType === "API_POSTMAN" ||
             hackathonType === "API_REST Assured") && (
             <FormField
@@ -317,22 +327,53 @@ function TeamMemberForm({
             />
           )}
 
-          {!isBuildathon && (
+          {!isBuildathon &&
+            track === "SDET" &&
+            hackathonType !== "BLOGATHON" && (
+              <FormField
+                control={control}
+                name={`teamMembers.${index}.previousHackathonParticipation`}
+                render={({ field }) => (
+                  <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                    <div className="space-y-0.5">
+                      <FormLabel>
+                        {hackathonType === "PYTHON"
+                          ? "Have you participated in any previous Python hackathons here at Numpy Ninja?"
+                          : hackathonType === "API_POSTMAN" ||
+                              hackathonType === "API_REST Assured"
+                            ? "Have you participated in previous API hackathons?"
+                            : hackathonType === "SQL"
+                              ? "Have you participated in any previous SQL hackathons here at Numpy Ninja?"
+                              : "Have you participated in previous Selenium hackathons?"}
+                      </FormLabel>
+                    </div>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            )}
+
+          {!isBuildathon && track === "DA" && hackathonType !== "BLOGATHON" && (
             <FormField
               control={control}
-              name={`teamMembers.${index}.previousHackathonParticipation`}
+              name={`teamMembers.${index}.previousDAtrackHackathon`}
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                   <div className="space-y-0.5">
                     <FormLabel>
-                      {hackathonType === "Python SDET"
+                      {hackathonType === "PYTHON"
                         ? "Have you participated in any previous Python hackathons here at Numpy Ninja?"
                         : hackathonType === "API_POSTMAN" ||
                             hackathonType === "API_REST Assured"
                           ? "Have you participated in previous API hackathons?"
                           : hackathonType === "SQL"
                             ? "Have you participated in any previous SQL hackathons here at Numpy Ninja?"
-                            : "Have you participated in previous Selenium hackathons?"}
+                            : "Have you participated in previous hackathons?"}
                     </FormLabel>
                   </div>
                   <FormControl>
@@ -346,14 +387,40 @@ function TeamMemberForm({
             />
           )}
 
-          {hackathonType === "Python SDET" && (
+          {!isBuildathon &&
+            track === "SDET" &&
+            hackathonType === "JOBATHON" && (
+              <FormField
+                control={control}
+                name={`teamMembers.${index}.completedAPIorSQL`}
+                render={({ field }) => (
+                  <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                    <div className="space-y-0.5">
+                      <FormLabel>
+                        Have you completed API / SQL Hackathon?
+                      </FormLabel>
+                    </div>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            )}
+
+          {hackathonType === "PYTHON" && (
             <>
               <FormField
                 control={control}
-                name={`teamMembers.${index}.sqlExpertiseLevel`}
+                name={`teamMembers.${index}.expertiseLevel`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Please indicate your level of expertise w.r.t SQL</FormLabel>
+                    <FormLabel>
+                      Please indicate your level of expertise w.r.t in Python
+                    </FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -362,7 +429,9 @@ function TeamMemberForm({
                       </FormControl>
                       <SelectContent>
                         <SelectItem value="Beginner">Beginner</SelectItem>
-                        <SelectItem value="Intermediate">Intermediate</SelectItem>
+                        <SelectItem value="Intermediate">
+                          Intermediate
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -374,9 +443,17 @@ function TeamMemberForm({
                 name={`teamMembers.${index}.prerequisitesDocLink`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Please provide the link to your pre-requisites document. Instructions for how to create the document can be found here.</FormLabel>
+                    <FormLabel>
+                      Please provide the link to your pre-requisites document.
+                      Instructions for how to create the document can be found
+                      here.
+                    </FormLabel>
                     <FormControl>
-                      <Input type="url" placeholder="Enter document link" {...field} />
+                      <Input
+                        type="url"
+                        placeholder="Enter document link"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -387,7 +464,9 @@ function TeamMemberForm({
 
           {track === "SDET" &&
             previousHackathonParticipation &&
-            hackathonType !== "Python SDET" && (
+            hackathonType !== "PYTHON" &&
+            hackathonType !== "BLOGATHON" &&
+            hackathonType !== "JOBATHON" && (
               <>
                 <FormField
                   control={control}
